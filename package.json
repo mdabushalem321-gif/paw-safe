@@ -1,0 +1,25 @@
+{
+  "name": "paw-safe",
+  "version": "1.0.0",
+  "description": "Animal rescue and adoption platform - Saving strays, one paw at a time",
+  "main": "index.html",
+  "scripts": {
+    "dev": "python -m http.server 8000",
+    "build": "echo 'Static site - no build needed'",
+    "deploy": "vercel --prod"
+  },
+  "keywords": [
+    "animal-rescue",
+    "pet-adoption",
+    "stray-animals",
+    "animal-welfare",
+    "volunteer",
+    "donation"
+  ],
+  "author": "Tanishka Malkar",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/paw-safe.git"
+  }
+}

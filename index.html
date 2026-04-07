@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="description" content="Paw Safe - Rescue and protect stray animals. Report strays, adopt pets, volunteer, and donate to help animals in need.">
+    <meta name="theme-color" content="#FF6B6B">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <title>Paw Safe - Saving Strays, One Paw at a Time</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="mobile-fixes.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="logo.jpeg" alt="Paw Safe Logo">
+                <span>Paw Safe</span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#report">Report</a></li>
+                <li><a href="#adopt">Adopt</a></li>
+                <li><a href="#rescue">Rescue</a></li>
+                <li><a href="#donate">Donate</a></li>
+                <li><a href="#awareness">Awareness</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+                <button class="emergency-btn" onclick="showEmergencyModal()">🚨 Emergency</button>
+                <button class="hamburger" onclick="toggleMenu()">☰</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Emergency Modal -->
+    <div id="emergencyModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeEmergencyModal()">&times;</span>
+            <h2>🚨 Emergency Animal Rescue</h2>
+            <p>If you see an animal in immediate danger, please call:</p>
+            <div class="emergency-contacts">
+                <a href="tel:+917820981034" class="emergency-contact-btn">📞 Call Now: +91 78209 81034</a>
+                <a href="mailto:tanisha.malkar23@gmail.com" class="emergency-contact-btn">📧 Email: tanisha.malkar23@gmail.com</a>
+            </div>
+            <p style="margin-top: 1rem;">Or quickly report the location:</p>
+            <button class="btn btn-accent" onclick="quickReport()">📍 Send Quick Location</button>
+        </div>
+    </div>
+
+    <!-- Home Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>🐾 Because Every Paw Deserves Safety</h1>
+            <p>Paw Safe helps protect and rescue stray animals. Together, we can make a difference.</p>
+            <div class="hero-buttons">
+                <a href="#report" class="btn btn-primary">Report a Stray</a>
+                <a href="#adopt" class="btn btn-secondary">Adopt Now</a>
+                <a href="#donate" class="btn btn-accent">Donate</a>
+            </div>
+            <div class="stats">
+                <div class="stat-item">
+                    <h3>500+</h3>
+                    <p>Animals Rescued</p>
+                </div>
+                <div class="stat-item">
+                    <h3>300+</h3>
+                    <p>Successful Adoptions</p>
+                </div>
+                <div class="stat-item">
+                    <h3>1000+</h3>
+                    <p>Happy Families</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories Section -->
+    <section class="section success-stories">
+        <div class="container">
+            <h2>💖 Success Stories</h2>
+            <p>See the lives we've changed together</p>
+            <div class="stories-grid">
+                <div class="story-card">
+                    <img src="https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=400&h=300&fit=crop" alt="Happy adopted dog">
+                    <div class="story-content">
+                        <h3>Charlie's Journey</h3>
+                        <p>"Found injured on the street, now living his best life with his new family!"</p>
+                    </div>
+                </div>
+                <div class="story-card">
+                    <img src="https://images.unsplash.com/photo-1529778873920-4da4926a72c2?w=400&h=300&fit=crop" alt="Happy adopted cat">
+                    <div class="story-content">
+                        <h3>Mittens' New Home</h3>
+                        <p>"From scared stray to beloved family member. Love changes everything!"</p>
+                    </div>
+                </div>
+                <div class="story-card">
+                    <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=400&h=300&fit=crop" alt="Happy dog with owner">
+                    <div class="story-content">
+                        <h3>Buddy's Second Chance</h3>
+                        <p>"Rescued from the streets, now a certified therapy dog helping others!"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Report Section -->
+    <section id="report" class="section">
+        <div class="container">
+            <h2>🐾 Report a Stray Animal</h2>
+            <p>Help us help them! Report a stray animal in need.</p>
+            <form class="report-form" onsubmit="handleReport(event)">
+                <div class="form-group">
+                    <label>Location 📍</label>
+                    <input type="text" name="location" required placeholder="Enter location">
+                </div>
+                <div class="form-group">
+                    <label>Photo 📷</label>
+                    <input type="file" name="photo" accept="image/*">
+                </div>
+                <div class="form-group">
+                    <label>Condition</label>
+                    <select name="condition" required>
+                        <option value="">Select condition</option>
+                        <option value="injured">Injured</option>
+                        <option value="hungry">Hungry</option>
+                        <option value="sick">Sick</option>
+                        <option value="healthy">Healthy but needs home</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Additional Details</label>
+                    <textarea name="details" rows="4" placeholder="Any other information..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Your Contact (optional)</label>
+                    <input type="text" name="contact" placeholder="Phone or email">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit Report</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Adoption Section -->
+    <section id="adopt" class="section bg-light">
+        <div class="container">
+            <h2>🐕 Available for Adoption</h2>
+            <p>Give them a forever home ❤️</p>
+            <div class="adoption-grid">
+                <div class="animal-card">
+                    <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400&h=400&fit=crop" alt="Bruno the dog" class="animal-photo">
+                    <h3>Bruno</h3>
+                    <p class="age">Age: 2 years • Male</p>
+                    <p class="breed">Golden Retriever Mix</p>
+                    <p class="status healthy">Healthy</p>
+                    <p class="description">Friendly and loves to play fetch!</p>
+                    <button class="btn btn-primary" onclick="adoptAnimal('Bruno')">Adopt Me</button>
+                </div>
+                <div class="animal-card">
+                    <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400&h=400&fit=crop" alt="Whiskers the cat" class="animal-photo">
+                    <h3>Whiskers</h3>
+                    <p class="age">Age: 1 year • Female</p>
+                    <p class="breed">Tabby Cat</p>
+                    <p class="status healthy">Healthy</p>
+                    <p class="description">Calm and loves cuddles</p>
+                    <button class="btn btn-primary" onclick="adoptAnimal('Whiskers')">Adopt Me</button>
+                </div>
+                <div class="animal-card">
+                    <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?w=400&h=400&fit=crop" alt="Bella the dog" class="animal-photo">
+                    <h3>Bella</h3>
+                    <p class="age">Age: 3 years • Female</p>
+                    <p class="breed">Labrador Mix</p>
+                    <p class="status recovering">Recovering</p>
+                    <p class="description">Sweet girl, great with kids</p>
+                    <button class="btn btn-primary" onclick="adoptAnimal('Bella')">Adopt Me</button>
+                </div>
+                <div class="animal-card">
+                    <img src="https://images.unsplash.com/photo-1574158622682-e40e69881006?w=400&h=400&fit=crop" alt="Max the cat" class="animal-photo">
+                    <h3>Max</h3>
+                    <p class="age">Age: 4 years • Male</p>
+                    <p class="breed">Persian Cat</p>
+                    <p class="status healthy">Healthy</p>
+                    <p class="description">Independent and playful</p>
+                    <button class="btn btn-primary" onclick="adoptAnimal('Max')">Adopt Me</button>
+                </div>
+                <div class="animal-card">
+                    <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?w=400&h=400&fit=crop" alt="Rocky the dog" class="animal-photo">
+                    <h3>Rocky</h3>
+                    <p class="age">Age: 5 years • Male</p>
+                    <p class="breed">German Shepherd Mix</p>
+                    <p class="status healthy">Healthy</p>
+                    <p class="description">Loyal protector, well-trained</p>
+                    <button class="btn btn-primary" onclick="adoptAnimal('Rocky')">Adopt Me</button>
+                </div>
+                <div class="animal-card">
+                    <img src="https://images.unsplash.com/photo-1495360010541-f48722b34f7d?w=400&h=400&fit=crop" alt="Luna the cat" class="animal-photo">
+                    <h3>Luna</h3>
+                    <p class="age">Age: 6 months • Female</p>
+                    <p class="breed">Siamese Kitten</p>
+                    <p class="status healthy">Healthy</p>
+                    <p class="description">Energetic and curious kitten</p>
+                    <button class="btn btn-primary" onclick="adoptAnimal('Luna')">Adopt Me</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rescue Section -->
+    <section id="rescue" class="section">
+        <div class="container">
+            <h2>🏥 Emergency Rescue Help</h2>
+            <div class="rescue-content">
+                <div class="rescue-card">
+                    <h3>🚨 Emergency Contacts</h3>
+                    <ul>
+                        <li>Animal Helpline: <strong><a href="tel:+917820981034">+91 78209 81034</a></strong></li>
+                        <li>Email Support: <strong><a href="mailto:tanisha.malkar23@gmail.com">tanisha.malkar23@gmail.com</a></strong></li>
+                        <li>Location: <strong>Sinnar, Nashik</strong></li>
+                    </ul>
+                </div>
+                <div class="rescue-card">
+                    <h3>🩹 What to Do if Animal is Injured</h3>
+                    <ol>
+                        <li>Stay calm and approach slowly</li>
+                        <li>Call emergency helpline immediately</li>
+                        <li>Keep the animal warm and comfortable</li>
+                        <li>Don't try to treat serious injuries yourself</li>
+                        <li>Wait for professional help</li>
+                    </ol>
+                </div>
+                <div class="rescue-card">
+                    <h3>📍 Find Nearby Shelters</h3>
+                    <button class="btn btn-accent" onclick="findShelters()">Locate Shelters Near Me</button>
+                    <p style="margin-top: 1rem; font-size: 0.9rem;">We'll help you find the nearest animal shelter or rescue center</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Volunteer Section -->
+    <section class="section bg-light volunteer-section">
+        <div class="container">
+            <h2>🙋 Become a Volunteer</h2>
+            <p>Join our mission to save more lives</p>
+            <div class="volunteer-content">
+                <div class="volunteer-info">
+                    <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&h=400&fit=crop" alt="Volunteers with animals">
+                </div>
+                <div class="volunteer-form-container">
+                    <h3>Sign Up Today</h3>
+                    <form class="volunteer-form" onsubmit="handleVolunteer(event)">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Your Email" required>
+                        <input type="tel" name="phone" placeholder="Phone Number" required>
+                        <select name="interest" required>
+                            <option value="">How would you like to help?</option>
+                            <option value="rescue">Rescue Operations</option>
+                            <option value="foster">Foster Care</option>
+                            <option value="transport">Animal Transport</option>
+                            <option value="fundraising">Fundraising</option>
+                            <option value="awareness">Awareness Campaigns</option>
+                        </select>
+                        <textarea name="message" rows="3" placeholder="Tell us about yourself..."></textarea>
+                        <button type="submit" class="btn btn-primary">Join Us</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Donation Section -->
+    <section id="donate" class="section bg-light">
+        <div class="container">
+            <h2>💝 Support Our Mission</h2>
+            <p>Your donations help provide food, medicine, and shelter to stray animals</p>
+            <div class="donate-content">
+                <div class="donate-info">
+                    <h3>How Your Donation Helps:</h3>
+                    <ul>
+                        <li>🍖 Food for hungry strays</li>
+                        <li>💊 Medical treatment and vaccines</li>
+                        <li>🏠 Shelter and safe spaces</li>
+                        <li>🩺 Emergency rescue operations</li>
+                    </ul>
+                </div>
+                <div class="donate-box">
+                    <h3>Donate Now</h3>
+                    <div class="qr-code-container">
+                        <img src="upi_QR-CODE.png" alt="UPI QR Code" class="qr-code-image">
+                        <p class="qr-label">Scan to Donate via UPI</p>
+                    </div>
+                    <button class="btn btn-accent" onclick="window.open('upi://pay?pa=tanisha.malkar23@gmail.com&pn=Paw Safe&cu=INR')">Donate via UPI</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Awareness Section -->
+    <section id="awareness" class="section">
+        <div class="container">
+            <h2>📚 Awareness & Tips</h2>
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <h3>🍖 How to Feed Strays Properly</h3>
+                    <ul>
+                        <li>Use clean bowls and fresh water</li>
+                        <li>Avoid spicy or seasoned food</li>
+                        <li>Rice, boiled chicken, or dog food works best</li>
+                        <li>Feed at regular times if possible</li>
+                    </ul>
+                </div>
+                <div class="tip-card">
+                    <h3>🩹 Basic First Aid</h3>
+                    <ul>
+                        <li>Clean wounds with clean water</li>
+                        <li>Apply antiseptic if available</li>
+                        <li>Cover with clean cloth</li>
+                        <li>Call vet immediately for serious injuries</li>
+                    </ul>
+                </div>
+                <div class="tip-card">
+                    <h3>❤️ Why Adopt, Don't Shop</h3>
+                    <ul>
+                        <li>Save a life instead of supporting breeding</li>
+                        <li>Strays are equally loving and loyal</li>
+                        <li>Reduce animal homelessness</li>
+                        <li>Adopted pets are often healthier</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2>👩‍💻 About Paw Safe</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=600&h=400&fit=crop" alt="Caring for animals">
+                </div>
+                <div class="about-text">
+                    <p>Paw Safe was created by <strong>Tanishka Malkar</strong> with a simple mission: to protect and rescue stray animals who need our help. Every day, countless animals struggle to survive on the streets. Through this platform, we connect caring people with animals in need.</p>
+                    <p>Whether you want to report a stray, adopt a furry friend, or contribute to their care, Paw Safe makes it easy to make a real difference.</p>
+                    <div class="mission-values">
+                        <div class="value-item">
+                            <span class="value-icon">❤️</span>
+                            <h4>Compassion</h4>
+                            <p>Every animal deserves love and care</p>
+                        </div>
+                        <div class="value-item">
+                            <span class="value-icon">🤝</span>
+                            <h4>Community</h4>
+                            <p>Together we're stronger</p>
+                        </div>
+                        <div class="value-item">
+                            <span class="value-icon">🎯</span>
+                            <h4>Action</h4>
+                            <p>Making real change happen</p>
+                        </div>
+                    </div>
+                    <p class="signature">Made with ❤️ by Tanishka Malkar for all the paws out there</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events & Campaigns Section -->
+    <section id="events" class="section bg-light">
+        <div class="container">
+            <h2>📅 Upcoming Events & Campaigns</h2>
+            <p>Join us in making a difference</p>
+            <div class="events-grid">
+                <div class="event-card">
+                    <div class="event-date">
+                        <span class="day">15</span>
+                        <span class="month">MAY</span>
+                    </div>
+                    <div class="event-details">
+                        <h3>Adoption Drive</h3>
+                        <p>📍 City Park, Main Street</p>
+                        <p>⏰ 10:00 AM - 4:00 PM</p>
+                        <button class="btn btn-primary" onclick="registerEvent('Adoption Drive')">Register</button>
+                    </div>
+                </div>
+                <div class="event-card">
+                    <div class="event-date">
+                        <span class="day">22</span>
+                        <span class="month">MAY</span>
+                    </div>
+                    <div class="event-details">
+                        <h3>Vaccination Camp</h3>
+                        <p>📍 Community Center</p>
+                        <p>⏰ 9:00 AM - 2:00 PM</p>
+                        <button class="btn btn-primary" onclick="registerEvent('Vaccination Camp')">Register</button>
+                    </div>
+                </div>
+                <div class="event-card">
+                    <div class="event-date">
+                        <span class="day">30</span>
+                        <span class="month">MAY</span>
+                    </div>
+                    <div class="event-details">
+                        <h3>Fundraising Walkathon</h3>
+                        <p>📍 Beach Road</p>
+                        <p>⏰ 6:00 AM - 9:00 AM</p>
+                        <button class="btn btn-primary" onclick="registerEvent('Fundraising Walkathon')">Register</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Feed Section -->
+    <section class="section live-feed">
+        <div class="container">
+            <h2>📡 Live Rescue Updates</h2>
+            <p>Real-time updates from our rescue operations</p>
+            <div class="feed-container">
+                <div class="feed-item">
+                    <span class="feed-time">2 mins ago</span>
+                    <p>🐕 Rescued injured dog from Highway 5. Receiving medical care.</p>
+                </div>
+                <div class="feed-item">
+                    <span class="feed-time">15 mins ago</span>
+                    <p>🐈 3 kittens found safe home! Thank you to the Johnson family.</p>
+                </div>
+                <div class="feed-item">
+                    <span class="feed-time">1 hour ago</span>
+                    <p>🏥 Emergency surgery successful for Bruno. He's recovering well!</p>
+                </div>
+                <div class="feed-item">
+                    <span class="feed-time">3 hours ago</span>
+                    <p>🎉 Bella got adopted! Congratulations to her new family!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pet Care Tips Blog -->
+    <section class="section bg-light blog-section">
+        <div class="container">
+            <h2>📝 Pet Care Blog</h2>
+            <p>Expert tips and advice for pet parents</p>
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <img src="https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=400&h=250&fit=crop" alt="Dog nutrition">
+                    <div class="blog-content">
+                        <span class="blog-category">Nutrition</span>
+                        <h3>Complete Guide to Dog Nutrition</h3>
+                        <p>Learn what foods are safe and healthy for your furry friend...</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400&h=250&fit=crop" alt="Cat care">
+                    <div class="blog-content">
+                        <span class="blog-category">Health</span>
+                        <h3>Understanding Cat Behavior</h3>
+                        <p>Decode your cat's body language and strengthen your bond...</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=400&h=250&fit=crop" alt="Training tips">
+                    <div class="blog-content">
+                        <span class="blog-category">Training</span>
+                        <h3>Basic Training Commands</h3>
+                        <p>Essential commands every dog should know for safety...</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Map Section -->
+    <section class="section map-section">
+        <div class="container">
+            <h2>🗺️ Find Help Near You</h2>
+            <p>Locate shelters, vets, and rescue centers</p>
+            <div class="map-container">
+                <div class="map-placeholder">
+                    <p>🗺️ Interactive Map</p>
+                    <button class="btn btn-accent" onclick="loadMap()">Load Map</button>
+                    <p class="map-info">Find nearby animal shelters, veterinary clinics, and rescue centers</p>
+                </div>
+                <div class="map-filters">
+                    <h3>Filter by:</h3>
+                    <label><input type="checkbox" checked> Animal Shelters</label>
+                    <label><input type="checkbox" checked> Veterinary Clinics</label>
+                    <label><input type="checkbox" checked> Rescue Centers</label>
+                    <label><input type="checkbox"> Pet Stores</label>
+                    <label><input type="checkbox"> Training Centers</label>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="section newsletter-section">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2>📬 Stay Updated</h2>
+                <p>Get rescue stories, adoption alerts, and pet care tips delivered to your inbox</p>
+                <form class="newsletter-form" onsubmit="handleNewsletter(event)">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit" class="btn btn-accent">Subscribe</button>
+                </form>
+                <p class="newsletter-note">We respect your privacy. Unsubscribe anytime.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section bg-light testimonials-section">
+        <div class="container">
+            <h2>� What People Say</h2>
+            <p>Stories from our community</p>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"Paw Safe helped me adopt the most wonderful dog. The process was smooth and they really care about the animals!"</p>
+                    <div class="testimonial-author">
+                        <strong>Sarah Johnson</strong>
+                        <span>Adopted Bruno</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"I reported a stray cat and they responded within hours. Amazing team doing incredible work!"</p>
+                    <div class="testimonial-author">
+                        <strong>Raj Patel</strong>
+                        <span>Volunteer</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"Volunteering with Paw Safe has been the most rewarding experience. Every life saved matters!"</p>
+                    <div class="testimonial-author">
+                        <strong>Emily Chen</strong>
+                        <span>Active Volunteer</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section faq-section">
+        <div class="container">
+            <h2>❓ Frequently Asked Questions</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>How do I adopt a pet?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Browse our adoption section, select a pet you'd like to adopt, and click "Adopt Me". We'll guide you through the application process, home visit, and paperwork. The entire process typically takes 3-5 days.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>What should I do if I find an injured animal?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Call our emergency helpline immediately at 1234-567-890. Keep the animal warm and comfortable, but don't attempt to treat serious injuries yourself. Our rescue team will arrive as soon as possible.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>Can I volunteer if I have no experience?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! We welcome volunteers of all experience levels. We provide training and guidance for all our volunteers. You can help with feeding, walking, fundraising, or awareness campaigns.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>How are donations used?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>100% of donations go directly to animal care: food, medical treatment, shelter maintenance, and rescue operations. We maintain complete transparency with monthly reports available on request.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>Do you accept all types of animals?</h3>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We primarily focus on dogs and cats, but we also help other domestic animals in distress. For wildlife, we coordinate with specialized wildlife rescue organizations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section bg-light">
+        <div class="container">
+            <h2>�📞 Contact Us</h2>
+            <div class="contact-grid">
+                <div class="contact-form-container">
+                    <h3>Send us a Message</h3>
+                    <form class="contact-form" onsubmit="handleContact(event)">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Your Email" required>
+                        <input type="text" name="subject" placeholder="Subject" required>
+                        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+                <div class="contact-info-container">
+                    <div class="contact-item">
+                        <h3>📧 Email</h3>
+                        <p><a href="mailto:tanisha.malkar23@gmail.com">tanisha.malkar23@gmail.com</a></p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>📱 Phone</h3>
+                        <p><a href="tel:+917820981034">+91 78209 81034</a></p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>� Address</h3>
+                        <p>Rohan-Roshan Apt, Sanjivani Nagar<br>Sinnar, Nashik, Maharashtra</p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>👩‍💻 Founder</h3>
+                        <p><strong>Tanishka Malkar</strong></p>
+                        <p style="font-size: 0.9rem; color: var(--dark-gray); margin-top: 0.3rem;">Animal Welfare Advocate</p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>🌐 Follow Us</h3>
+                        <div class="social-links">
+                            <a href="#" class="social-icon">📘 Facebook</a>
+                            <a href="#" class="social-icon">�📷 Instagram</a>
+                            <a href="#" class="social-icon">🐦 Twitter</a>
+                            <a href="#" class="social-icon">▶️ YouTube</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollTopBtn" onclick="scrollToTop()" title="Go to top">↑</button>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About Paw Safe</h4>
+                <p>Founded by Tanishka Malkar. Dedicated to rescuing and protecting stray animals.</p>
+                <p style="margin-top: 0.5rem;">📍 Sinnar, Nashik</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="#adopt">Adopt</a>
+                <a href="#donate">Donate</a>
+                <a href="#volunteer">Volunteer</a>
+                <a href="#events">Events</a>
+            </div>
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <a href="#awareness">Pet Care Tips</a>
+                <a href="#rescue">Emergency Help</a>
+                <a href="#contact">Contact Us</a>
+            </div>
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Cookie Policy</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>🐾 Paw Safe - Saving Strays, One Paw at a Time © 2024</p>
+            <p>Created by Tanishka Malkar | Made with ❤️ for all the animals</p>
+            <p style="font-size: 0.85rem; margin-top: 0.5rem;">📧 tanisha.malkar23@gmail.com | 📱 +91 78209 81034</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script type="module" src="app.js"></script>
+</body>
+</html>
